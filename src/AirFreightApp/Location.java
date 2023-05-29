@@ -10,13 +10,16 @@ package AirFreightApp;
 
 public class Location extends GraphFramework.Vertex{
     
+    String city;
+            
     public Location(String label) {
         super(label);
+        this.label = "loc. " + label;
+        city = "city " + Math.random() * 30;
     }
     
-    String city;
-    
+    @Override
     public void displayInfo(){
-        
+        System.out.println(label + ": " + city);
     }
 }

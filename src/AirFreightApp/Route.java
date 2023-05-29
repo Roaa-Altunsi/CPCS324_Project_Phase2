@@ -16,8 +16,13 @@ public class Route extends GraphFramework.Edge{
         super(source, target, parent, weight);
     }
     
+    public Route(Vertex source, Vertex target, int weight) {
+        super(source, target, weight);
+    }
+    
+    @Override
     public void displayInfo(){
-        
+        System.out.println("--- route length: ");
     }
     
 }

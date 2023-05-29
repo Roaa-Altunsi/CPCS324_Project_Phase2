@@ -15,13 +15,19 @@ public class AFRouteMap extends GraphFramework.Graph{
 
     @Override
     public Edge createEdge(Vertex source, Vertex target, int weight) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Route r = new Route(source, target, weight);
+        return r;
     }
 
     @Override
     public Vertex createVertex(String label) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Location loc = new Location(label);
+        return loc;
     }
+    
+    
+    
+    
     
     
 }
