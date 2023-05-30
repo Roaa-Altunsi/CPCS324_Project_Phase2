@@ -10,4 +10,12 @@ package GraphFramework;
 
 public class ShortestPathAlgorithm {
     
+    // ATRIBUTES
+    Graph graph;
+    
+    // CONSTRUCTOR
+    ShortestPathAlgorithm(Graph graph){
+        this.graph = graph;
+    }
+    
 }

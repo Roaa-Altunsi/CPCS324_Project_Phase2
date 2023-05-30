@@ -10,4 +10,19 @@ package GraphFramework;
 
 public class DBAllSourceSPAlg extends ShortestPathAlgorithm{
     
+    // CONSTRUCTOR
+    public DBAllSourceSPAlg(Graph graph){
+        super(graph);
+    }
+    
+    // METHODS
+    public void computeDijkstraBasedSPAlg(){
+        // Computing the shortest path from each vertex to the rest of the vertices
+        int numVertices = graph.verticesNo;
+        SingleSourceSPAlg Single = new SingleSourceSPAlg(graph);
+        for (int sourceVertex = 0; sourceVertex < numVertices; sourceVertex++) {
+            Single.computeDijkstraAlg(graph.vertices[sourceVertex]);
+        }
+    }
+   
 }
