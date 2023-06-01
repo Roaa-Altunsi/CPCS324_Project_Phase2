@@ -8,7 +8,9 @@ CPCS324 Group Project | Phase2 | Section B9B
 
 package AirFreightApp;
 
+import GraphFramework.DBAllSourceSPAlg;
 import GraphFramework.ShortestPathAlgorithm;
+import GraphFramework.SingleSourceSPAlg;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -79,7 +81,7 @@ public class AirFreightApp {
         System.out.println("");
         
         // Compute the all-pair-source shortest path problem by SingleSourceSPAlg
-        ShortestPathAlgorithm alg1 = new ShortestPathAlgorithm();
+        ShortestPathAlgorithm alg1 = new SingleSourceSPAlg(map);
         long startTime =  System.nanoTime();
         //alg1.computeDijkstraAlg(flag);
         long endTime = System.nanoTime();
@@ -90,11 +92,11 @@ public class AirFreightApp {
         System.out.println("\n");
         
         // Compute the all-pair-source shortest path problem by DBAllSourceSPAlg
-        ShortestPathAlgorithm alg2 = new ShortestPathAlgorithm();
+        ShortestPathAlgorithm alg2 = new DBAllSourceSPAlg(map);
         long beginTime =  System.nanoTime();
         //alg2.computeDijkstraBasedSPAlg(flag);
         long finalTime = System.nanoTime();
-        long timeElapsed = endTime - startTime;
+        long timeElapsed = finalTime - beginTime;
         System.out.println("------------------------------------------------\n"
                 + "Total time elapsed (Dijkstra-based shortest path Algorithm) : " + timeElapsed);
         
