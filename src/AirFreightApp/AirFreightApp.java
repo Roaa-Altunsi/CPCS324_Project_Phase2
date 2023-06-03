@@ -9,7 +9,6 @@ CPCS324 Group Project | Phase2 | Section B9B
 package AirFreightApp;
 
 import GraphFramework.DBAllSourceSPAlg;
-import GraphFramework.ShortestPathAlgorithm;
 import GraphFramework.SingleSourceSPAlg;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -32,12 +31,10 @@ public class AirFreightApp {
         System.out.print("Type 1 to Upload a File or Any Other Number to Generate a Random Graph: ");
         int option = input.nextInt();
         
-        if(option != 1){
+        if(option != 1){ // Apply makeGraph() method
             
-           int vNum, eNum, choice;
-            
-           do{
-                // Apply makeGraph() method
+            int vNum = 0, eNum, choice;
+            do{
                 System.out.println("\n\n--------------------- Choose From 1 to 5 ------------------");
                 System.out.println("*** where n = number of vertices and m = number of edges ***");
                 System.out.println("*** These are the available cases: ***");
@@ -68,37 +65,32 @@ public class AirFreightApp {
 
                 map.makeGraph(vNum, eNum);
 
-            }while(!(choice>=1 && choice<=5));
+            } while(!(choice>=1 && choice<=5));
+            
+            //flag = true;
+            // Compute the all-pair-source shortest path problem by SingleSourceSPAlg
+            SingleSourceSPAlg obj = new SingleSourceSPAlg(map);
+            long startTime = System.nanoTime();
+            obj.computeDijkstraAlg(new Location("A", vNum), flag);
+            long endTime = System.nanoTime();
+            long elapsedTime = endTime - startTime;
+            System.out.println("------------------------------------------------\nTotal time elapsed (Single Source Algorithm) : " + elapsedTime);
            
-        } else {
-            // Read graph from file
+            
+            
+        } else { // Read graph from file
+            
             flag = true;
             System.out.print("Please enter the file name you wish to use, including the '.txt' extension: ");
             String fileName = input.next();
             map.readGraphFromFile(fileName);
+            System.out.println("\n");
+            
+            // Compute the all-pair-source shortest path problem by DBAllSourceSPAlg
+            DBAllSourceSPAlg alg1 = new DBAllSourceSPAlg(map);
+            alg1.computeDijkstraBasedSPAlg(flag);
+            
         }
-        
-        System.out.println("");
-        
-        // Compute the all-pair-source shortest path problem by SingleSourceSPAlg
-        ShortestPathAlgorithm alg1 = new SingleSourceSPAlg(map);
-        long startTime =  System.nanoTime();
-        //alg1.computeDijkstraAlg(flag);
-        long endTime = System.nanoTime();
-        long elapsedTime = endTime - startTime;
-        System.out.println("------------------------------------------------\n"
-                + "Total time elapsed (Single Source Algorithm) : " + elapsedTime);
-        
-        System.out.println("\n");
-        
-        // Compute the all-pair-source shortest path problem by DBAllSourceSPAlg
-        ShortestPathAlgorithm alg2 = new DBAllSourceSPAlg(map);
-        long beginTime =  System.nanoTime();
-        //alg2.computeDijkstraBasedSPAlg(flag);
-        long finalTime = System.nanoTime();
-        long timeElapsed = finalTime - beginTime;
-        System.out.println("------------------------------------------------\n"
-                + "Total time elapsed (Dijkstra-based shortest path Algorithm) : " + timeElapsed);
         
 
     }

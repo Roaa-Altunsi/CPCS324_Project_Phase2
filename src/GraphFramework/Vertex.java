@@ -10,7 +10,7 @@ package GraphFramework;
 
 import java.util.LinkedList;
 
-public class Vertex {
+public abstract class Vertex {
     
     // ATRIBUTES 
     public String label;
@@ -22,12 +22,9 @@ public class Vertex {
         this.label = label;
         this.isVisited = false;
         this.adjList = new LinkedList<Edge>();
-        Vertex parent;
     }
 
     // METHODS
-    public void displayInfo() {
-        System.out.println("Label: " + label+" Visited: " + isVisited +" Adjacency List: " + adjList);
-    }
+    public abstract void displayInfo();
     
 }

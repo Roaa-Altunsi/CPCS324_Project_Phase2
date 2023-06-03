@@ -12,14 +12,15 @@ public class Location extends GraphFramework.Vertex{
     
     String city;
             
-    public Location(String label) {
+    public Location(String label, int verticesNo) {
         super(label);
         this.label = "loc. " + label;
-        city = "city " + Math.random() * 30;
+        city = "city " + verticesNo;
     }
     
     @Override
     public void displayInfo(){
-        System.out.println(label + ": " + city);
+        System.out.print(label + ": " + city);
     }
+    
 }

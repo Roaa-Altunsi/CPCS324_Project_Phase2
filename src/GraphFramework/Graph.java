@@ -11,7 +11,6 @@ package GraphFramework;
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public abstract class Graph {
     
@@ -29,7 +28,7 @@ public abstract class Graph {
         for (int i = 0; i < vNum; i++) {
            // create vertix and add it to the list
            this.verticesNo++;
-           vertices[i]=createVertex(Integer.toString(i+1));
+           vertices[i]=createVertex(((char)(i+65))+"", verticesNo/*Integer.toString(i+1)*/);
           // label++;
         }
         
@@ -90,7 +89,7 @@ public abstract class Graph {
     public void readGraphFromFile(String fileName) throws FileNotFoundException{
        File g = new File(fileName);
        Scanner input = new Scanner (g);
-       if(input.nextLine()=="digraph 1")
+       if("digraph 1".equals(input.nextLine()))
             this.isDigraph=true;
 
         
@@ -107,8 +106,8 @@ public abstract class Graph {
             int w = input.nextInt();
             
             // add vertices
-            if(vertices[(s1.charAt(0))-'A']==null){ this.verticesNo++; vertices[(s1.charAt(0))-'A']= createVertex(String.valueOf((s1.charAt(0))-'A'));}
-            if(vertices[(s2.charAt(0))-'A']==null){ this.verticesNo++; vertices[(s2.charAt(0))-'A']= createVertex(String.valueOf((s2.charAt(0))-'A'));}
+            if(vertices[(s1.charAt(0))-'A']==null){ this.verticesNo++; vertices[(s1.charAt(0))-'A']= createVertex(s1, verticesNo);}
+            if(vertices[(s2.charAt(0))-'A']==null){ this.verticesNo++; vertices[(s2.charAt(0))-'A']= createVertex(s2, verticesNo);}
            
             // add the edge
             this.eddgNo++;
@@ -124,6 +123,6 @@ public abstract class Graph {
     
     public abstract Edge createEdge(Vertex source, Vertex target, int weight);
     
-    public abstract Vertex createVertex(String label);
+    public abstract Vertex createVertex(String label, int verticesNo);
     
 }

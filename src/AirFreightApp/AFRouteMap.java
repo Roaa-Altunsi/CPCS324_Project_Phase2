@@ -12,7 +12,7 @@ import GraphFramework.Edge;
 import GraphFramework.Vertex;
 
 public class AFRouteMap extends GraphFramework.Graph{
-
+    
     @Override
     public Edge createEdge(Vertex source, Vertex target, int weight) {
         Route r = new Route(source, target, weight);
@@ -20,14 +20,9 @@ public class AFRouteMap extends GraphFramework.Graph{
     }
 
     @Override
-    public Vertex createVertex(String label) {
-        Location loc = new Location(label);
+    public Vertex createVertex(String label, int verticesNo) {
+        Location loc = new Location(label, verticesNo);
         return loc;
     }
-    
-    
-    
-    
-    
     
 }

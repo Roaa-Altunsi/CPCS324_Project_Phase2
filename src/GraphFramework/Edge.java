@@ -8,7 +8,7 @@ CPCS324 Group Project | Phase2 | Section B9B
 
 package GraphFramework;
 
-public class Edge {
+public abstract class Edge {
     
     // ATRIBUTES 
     public Vertex source;
@@ -31,8 +31,6 @@ public class Edge {
     }
 
     // METHODS
-    public void displayInfo() {
-        System.out.println(" Office No."   + source.label+" - Office No. "+target.label+" : line length: "+weight);
-    }
+    public abstract void displayInfo();
     
 }

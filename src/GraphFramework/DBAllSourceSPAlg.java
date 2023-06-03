@@ -16,13 +16,19 @@ public class DBAllSourceSPAlg extends ShortestPathAlgorithm{
     }
     
     // METHODS
-    public void computeDijkstraBasedSPAlg(){
+    public void computeDijkstraBasedSPAlg(boolean flag){
         // Computing the shortest path from each vertex to the rest of the vertices
         int numVertices = graph.verticesNo;
         SingleSourceSPAlg Single = new SingleSourceSPAlg(graph);
         for (int sourceVertex = 0; sourceVertex < numVertices; sourceVertex++) {
-            Single.computeDijkstraAlg(graph.vertices[sourceVertex]);
+            
+            System.out.println("The starting point location is " + graph.vertices[sourceVertex].label.charAt(5));
+            System.out.println("The routes from location " + graph.vertices[sourceVertex].label.charAt(5) + 
+                    " to the rest of the locations are:");
+            Single.computeDijkstraAlg(graph.vertices[sourceVertex], flag);
+            System.out.println("\n---------------------------------------------------------------\n");
+            
         }
     }
-   
+    
 }
