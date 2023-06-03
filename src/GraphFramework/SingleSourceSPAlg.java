@@ -23,27 +23,31 @@ public class SingleSourceSPAlg extends ShortestPathAlgorithm{
         int inf= Integer.MAX_VALUE;
         int parent[] =new int[this.graph.verticesNo];
         
+        int indexSrc = (flag)? source.label.charAt(5)-'A': Integer.parseInt(source.label.substring(5))-1;
+        
+        
         for (int i = 0; i < dist.length; i++)
 	       dist[i] = inf;
-        dist[source.label.charAt(5)-'A'] = 0;
+        dist[indexSrc] = 0;
         
         PriorityQueue<int[]> q = new PriorityQueue<>( (a,b) -> Integer.compare(a[0],b[0]));// q containing arrays with length 2 to store (val, node)
         
         // add the source to the queue 
-        int fpair[]={0,(source.label.charAt(5)-'A')};
+        int fpair[]={0,indexSrc};
         q.add(fpair);
 
-        //
+        // 
         while(!q.isEmpty()){
             int arr[] =q.poll();
             int val = arr[0],  node = arr[1];
             
-            if(dist[node] < val ) continue;
-            for (int i = 0; i < graph.vertices[node].adjList.size(); i++) {
+            if(dist[node] < val ) continue; // keep the shortest distance 
+            for (int i = 0; i < graph.vertices[node].adjList.size(); i++) { // iterate trhough adjacent vertices 
                 Edge e = graph.vertices[node].adjList.get(i);
-                int to = e.target.label.charAt(5)-'A';
+                int to = (flag)? e.target.label.charAt(5)-'A': Integer.parseInt(e.target.label.substring(5))-1;
                 int w = e.weight;
                 
+                // update the shortest distance 
                 if (dist[to] > val + w) {
 	               dist[to] = val + w;
                        int pair[]={dist[to], to};
@@ -56,13 +60,14 @@ public class SingleSourceSPAlg extends ShortestPathAlgorithm{
         // print shortest path
         if(flag){
             for(int i=0; i<graph.verticesNo; i++){
+                
                 if(dist[i] == inf) {
                     System.out.println("");
                     System.out.println("There is no path from " + source.label + " to " + graph.vertices[i].label);
                     continue;
                 }
 
-                if(i != source.label.charAt(5)-'A'){
+                if(i != indexSrc){
                     System.out.println("");
                     getPath(source, i, parent);
                     System.out.println(" --- route length: " + dist[i]);
@@ -72,8 +77,9 @@ public class SingleSourceSPAlg extends ShortestPathAlgorithm{
  
     }
     
+    // Display the shortest path to the node
     public void getPath(Vertex source, int node, int[] parent){
-        
+        // Base case
         if(graph.vertices[parent[node]].label.equals(source.label)){  
             source.displayInfo();
             System.out.print("- ");

@@ -17,6 +17,7 @@ public class DBAllSourceSPAlg extends ShortestPathAlgorithm{
     
     // METHODS
     public void computeDijkstraBasedSPAlg(boolean flag){
+        
         // Computing the shortest path from each vertex to the rest of the vertices
         int numVertices = graph.verticesNo;
         SingleSourceSPAlg Single = new SingleSourceSPAlg(graph);
@@ -29,6 +30,7 @@ public class DBAllSourceSPAlg extends ShortestPathAlgorithm{
             System.out.println("\n---------------------------------------------------------------\n");
             
         }
+        
     }
     
 }

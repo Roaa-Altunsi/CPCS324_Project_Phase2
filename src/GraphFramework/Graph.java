@@ -28,8 +28,7 @@ public abstract class Graph {
         for (int i = 0; i < vNum; i++) {
            // create vertix and add it to the list
            this.verticesNo++;
-           vertices[i]=createVertex(((char)(i+65))+"", verticesNo/*Integer.toString(i+1)*/);
-          // label++;
+           vertices[i]=createVertex(Integer.toString(i+1), verticesNo);
         }
         
          int choose[]=new int[vNum];
@@ -62,16 +61,16 @@ public abstract class Graph {
 
             boolean t;
             do {
-                t = true;
+                t = false;
                 v1 = (int)(Math.random()*(vNum));
                 v2 = (int)(Math.random()*(vNum));
-                if(v2!=v1){
-                    t = false;
+                if(v2==v1){
+                    t = true;
                     continue;
                 }
                 for (int j = 0; j<vertices[v1].adjList.size();j++ ){
-                  if(vertices[v1].adjList.get(j).target.label!=(vertices[v2].label)){
-                      t=false;
+                  if(vertices[v1].adjList.get(j).target.label.equals(vertices[v2].label)){
+                      t=true;
                       break;
                   }
                 }

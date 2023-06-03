@@ -15,7 +15,7 @@ public class Location extends GraphFramework.Vertex{
     public Location(String label, int verticesNo) {
         super(label);
         this.label = "loc. " + label;
-        city = "city " + verticesNo;
+        city = "city " + verticesNo; // unique number for each city
     }
     
     @Override

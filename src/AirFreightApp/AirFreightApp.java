@@ -67,11 +67,10 @@ public class AirFreightApp {
 
             } while(!(choice>=1 && choice<=5));
             
-            //flag = true;
             // Compute the all-pair-source shortest path problem by SingleSourceSPAlg
             SingleSourceSPAlg obj = new SingleSourceSPAlg(map);
             long startTime = System.nanoTime();
-            obj.computeDijkstraAlg(new Location("A", vNum), flag);
+            obj.computeDijkstraAlg(new Location("2", vNum), flag);
             long endTime = System.nanoTime();
             long elapsedTime = endTime - startTime;
             System.out.println("------------------------------------------------\nTotal time elapsed (Single Source Algorithm) : " + elapsedTime);
